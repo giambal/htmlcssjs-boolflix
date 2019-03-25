@@ -1,5 +1,15 @@
-function addTitle(title) {
+function addTitle(title,pop) {
 
+  var dataTemp={
+    title:title,
+    pop:pop
+  };
+
+  var li=$("#film-template").html();
+  var compiled = Handlebars.compile(li);
+  var finalHTML= compiled(dataTemp);
+  var ulList=$("ul.films");
+  ulList.append(finalHTML);
 }
 
 function ajaxTest(title) {
@@ -22,7 +32,7 @@ function ajaxTest(title) {
         var title=res.title;
         var pop=res.popularity;
         console.log(title,pop);
-        addTitle(title);
+        addTitle(title,pop);
       }
     },
     error: function (error,state) {
