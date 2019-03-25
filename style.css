@@ -6,6 +6,26 @@
 }
 
 h1{
-  background-color: darkred;
-  border-bottom: 20px;
+  background-color: black;
+  font-size: 50px;
+  padding: 20px;
+  color: red;
+}
+
+.main-container{
+  width: 100vw;
+  max-width: 100%;
+  background-color: rgb(80, 80, 80);
+  padding-top: 30px;
+}
+
+.container{
+  width: 90%;
+  margin: auto;
+
+}
+
+.films{
+  margin-top: 20px;
+  font-size: 25px;
 }

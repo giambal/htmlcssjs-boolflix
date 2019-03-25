@@ -1,15 +1,17 @@
-function addTitle(title,pop) {
+function addTitle(title,origTitle,origLanguage,voto) {
 
   var dataTemp={
-    title:title,
-    pop:pop
+    title:"titolo: " + title,
+    origTitle: "titolo originale: " + origTitle,
+    origLanguage: "lingua originale: " + origLanguage,
+    voto: "voto: " + voto
   };
 
-  var li=$("#film-template").html();
-  var compiled = Handlebars.compile(li);
+  var divTemp=$("#film-template").html();
+  var compiled = Handlebars.compile(divTemp);
   var finalHTML= compiled(dataTemp);
-  var ulList=$("ul.films");
-  ulList.append(finalHTML);
+  var filmList=$("div.films");
+  filmList.append(finalHTML);
 }
 
 function ajaxTest(title) {
@@ -28,11 +30,14 @@ function ajaxTest(title) {
 
       var ress=data.results;
       for (var i = 0; i < ress.length; i++) {
+
         var res=ress[i];
         var title=res.title;
-        var pop=res.popularity;
-        console.log(title,pop);
-        addTitle(title,pop);
+        var origTitle=res.original_title;
+        var origLanguage=res.original_language;
+        var voto=res.vote_average;
+
+        addTitle(title,origTitle,origLanguage,voto);
       }
     },
     error: function (error,state) {
@@ -43,7 +48,7 @@ function ajaxTest(title) {
 
 function init() {
 
-  ajaxTest("back in the future");
+  ajaxTest("il cavaliere oscuro");
 }
 
 $(document).ready(init);

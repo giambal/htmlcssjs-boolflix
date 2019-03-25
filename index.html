@@ -2,6 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <!-- JS: JQUERY -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -9,7 +12,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js" charset="utf-8"></script>
     <!-- TEMPLATE: MESSAGE MENU -->
     <script id="film-template" type="text/x-handlebars-template">
-      <li>{{ title }} - {{ pop}}</li><br>
+      <div class="thisFilm">
+        {{ title }} <br>
+        {{ origTitle }} <br>
+        {{ origLanguage }} <br>
+        {{ voto }}
+      </div>
+      <hr>
     </script>
 
     <!-- CSS: MY STYLE -->
@@ -19,9 +28,22 @@
     <title>Boolflix</title>
   </head>
   <body>
-    <h1>Boolflix</h1>
-    <ul class="films">
+    <header>
+      <h1>Boolflix</h1>
 
-    </ul>
+    </header>
+    <div class="main-container">
+
+      <div class="container">
+
+        <div class="search-bar">
+          <input id="src-box" type="text" name="" placeholder="cerca un titolo" value="">
+          <button id="src-btn" type="button" name="button"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="films">
+
+        </div>
+      </div>
+    </div>
   </body>
 </html>
