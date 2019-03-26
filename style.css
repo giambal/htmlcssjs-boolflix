@@ -5,27 +5,49 @@
   user-select: none;
 }
 
+body{
+
+  background-color: rgb(80, 80, 80);
+}
+
 h1{
-  background-color: black;
   font-size: 50px;
   padding: 20px;
   color: red;
 }
 
+header{
+  background-color: black;
+}
+
+.header-container{
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .main-container{
   width: 100vw;
   max-width: 100%;
-  background-color: rgb(80, 80, 80);
   padding-top: 30px;
 }
 
 .container{
   width: 90%;
   margin: auto;
-
+  display: flex;
+  justify-content: space-between;
 }
 
-.films{
+.films,
+.serie{
   margin-top: 20px;
   font-size: 25px;
+  width: 50%;
+}
+
+.thisFilm,
+.thisSerie{
+  border-bottom: 1px solid black;
 }

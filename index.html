@@ -12,13 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js" charset="utf-8"></script>
     <!-- TEMPLATE: MESSAGE MENU -->
     <script id="film-template" type="text/x-handlebars-template">
-      <div class="thisFilm">
-        {{ title }} <br>
-        {{ origTitle }} <br>
-        {{ origLanguage }} <br>
-        {{ voto }}
+      <div class="{{class}}">
+        {{ movieTitle }} <br>
+        {{ movieOrigTitle }} <br>
+        {{ movieOrigLanguage }} <br>
+        {{ movieVoto }}
       </div>
-      <hr>
     </script>
 
     <!-- CSS: MY STYLE -->
@@ -29,19 +28,25 @@
   </head>
   <body>
     <header>
-      <h1>Boolflix</h1>
+      <div class="header-container">
 
-    </header>
-    <div class="main-container">
-
-      <div class="container">
+        <h1>Boolflix</h1>
 
         <div class="search-bar">
           <input id="src-box" type="text" name="" placeholder="cerca un titolo" value="">
           <button id="src-btn" type="button" name="button"><i class="fas fa-search"></i></button>
         </div>
-        <div class="films">
+      </div>
+    </header>
+    <div class="main-container">
+      <div class="container">
 
+
+        <div class="films">
+          <h1>film</h1>
+        </div>
+        <div class="serie">
+          <h1>serie</h1>
         </div>
       </div>
     </div>
