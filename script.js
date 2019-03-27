@@ -1,13 +1,14 @@
 // ---- APPEND PER IL FILM ----
 
 function addMovieTitle(title,origTitle,origLanguage,voto) {
-  console.log("film" ,title);
+
   var dataTemp={
     movieTitle:"titolo: " + title,
     movieOrigTitle: "titolo originale: " + origTitle,
     movieOrigLanguage: "lingua originale: " + origLanguage,
-    movieVoto: "voto: " + voto,
-    class: "thisFilm"
+    movieVoto: "voto: " + Math.ceil(voto),
+    class: "thisFilm",
+    stars: getStars(voto)
   };
 
   var divTemp=$("#film-template").html();
@@ -20,13 +21,14 @@ function addMovieTitle(title,origTitle,origLanguage,voto) {
 // ---- APPEND PER LA SERIE ----
 
 function addSerieTitle(title,origTitle,origLanguage,voto) {
-  console.log("serie" ,title);
+
   var dataTemp={
     movieTitle:"titolo: " + title,
     movieOrigTitle: "titolo originale: " + origTitle,
     movieOrigLanguage: "lingua originale: " + origLanguage,
     movieVoto: "voto: " + voto,
-    class:"thisSerie"
+    class:"thisSerie",
+    stars: getStars(voto)
   };
 
   var divTemp=$("#film-template").html();
@@ -34,6 +36,22 @@ function addSerieTitle(title,origTitle,origLanguage,voto) {
   var finalHTML= compiled(dataTemp);
   var list=$("div.serie");
   list.append(finalHTML);
+}
+
+// ---- GET STARS ----
+
+function getStars(voto) {
+
+  var votoArr=Math.ceil(voto/2);
+
+  str=' ';
+  for (var i = 0; i < votoArr; i++) {
+    if (i<=votoArr) {
+      str+='<i class="fas fa-star"></i>';
+    }else {
+      str+='<i class="far fa-star"></i>';
+    }
+  }
 }
 
 // ---- CLEAR DELLA LISTA ----
@@ -135,6 +153,14 @@ function search() {
 function keyAction(event) {
   if (event.which==13) {
     search();
+  }
+}
+
+// ---- GET STARS ----
+
+function functionName() {
+  for (var i = 0; i < 5; i++) {
+
   }
 }
 
