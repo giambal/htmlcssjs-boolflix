@@ -3,10 +3,11 @@
 function addMovieTitle(title,origTitle,origLanguage,voto) {
 
   var dataTemp={
-    title:"titolo: " + title,
-    origTitle: "titolo originale: " + origTitle,
-    origLanguage: "lingua originale: " + origLanguage,
-    voto: "voto: " + Math.ceil(voto),
+    type:"MOVIE",
+    title: title,
+    origTitle:  origTitle,
+    origLanguage:  getFlag(origLanguage),
+    voto:  Math.ceil(voto),
     class: "thisFilm",
     stars: getMovieStars(voto)
   };
@@ -23,10 +24,11 @@ function addMovieTitle(title,origTitle,origLanguage,voto) {
 function addSerieTitle(title,origTitle,origLanguage,rating) {
 
   var dataTemp={
-    title:"titolo: " + title,
-    origTitle: "titolo originale: " + origTitle,
-    origLanguage: "lingua originale: " + origLanguage,
-    voto: "voto: " + rating,
+    type:"SERIE",
+    title:title,
+    origTitle:  origTitle,
+    origLanguage:  getFlag(origLanguage),
+    voto:  Math.ceil(rating),
     class:"thisSerie",
     stars: getSerieStars(rating)
   };
@@ -34,7 +36,7 @@ function addSerieTitle(title,origTitle,origLanguage,rating) {
   var divTemp=$("#film-template").html();
   var compiled = Handlebars.compile(divTemp);
   var finalHTML= compiled(dataTemp);
-  var list=$("div.serie");
+  var list=$("div.films");
   list.append(finalHTML);
 }
 
@@ -45,11 +47,11 @@ function getMovieStars(voto) {
   var votoArr=Math.ceil(voto/2);
 
   var str=' ';
-  for (var i = 0; i < votoArr; i++) {
-    if (i<=votoArr) {
+  for (var i = 0; i < 5; i++) {
+    if (i<votoArr) {
       str+='<i class="fas fa-star"></i>';
     }else {
-      str+='ciao';
+      str+='<i class="far fa-star"></i>';
     }
   }
   return str;
@@ -60,14 +62,29 @@ function getSerieStars(rating) {
   var votoArr=Math.ceil(rating/2);
 
   var str=' ';
-  for (var i = 0; i < votoArr; i++) {
-    if (i<=votoArr) {
+  for (var i = 0; i < 5; i++) {
+    if (i<votoArr) {
       str+='<i class="fas fa-star"></i>';
     }else {
       str+='<i class="far fa-star"></i>';
     }
   }
   return str;
+}
+
+// ---- GET FLAGS ----
+
+function getFlag(origLanguage) {
+
+  switch (origLanguage) {
+    case "en": '<img src="uk.png" alt="">';
+
+      break;
+
+    case "it": '<img src="it.png" alt="">';
+
+      break;
+  }
 }
 
 // ---- CLEAR DELLA LISTA ----
@@ -160,6 +177,9 @@ function ajaxGetTvSeries(val) {
 function search() {
   var input=$("#src-box");
   var val=input.val();
+  var h1=$(".films h1");
+  h1.removeClass("displayNone");
+  h1.addClass("displayBlock");
   ajaxGetTvSeries(val);
   ajaxGetMovie(val);
 }

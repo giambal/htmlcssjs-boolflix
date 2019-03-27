@@ -12,10 +12,11 @@
     <!-- TEMPLATE: MESSAGE MENU -->
     <script id="film-template" type="text/x-handlebars-template">
       <div class="{{class}}">
-        {{ title }} <br>
-        {{ origTitle }} <br>
-        {{ origLanguage }} <br>
-        {{ voto }} <br>
+        {{ type }} <br>
+        <b>Titolo: </b>{{ title }} <br>
+        <b>Titolo originale: </b>{{ origTitle }} <br>
+        <b>Lingua originale: </b>{{ origLanguage }} <br>
+        <b>Voto: </b>{{ voto }} <br>
         {{{ stars }}}
       </div>
     </script>
@@ -43,10 +44,7 @@
 
 
         <div class="films">
-          <h1>film</h1>
-        </div>
-        <div class="serie">
-          <h1>serie</h1>
+          <h1 class="displayNone">Results</h1>
         </div>
       </div>
     </div>

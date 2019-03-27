@@ -51,3 +51,20 @@ header{
 .thisSerie{
   border-bottom: 1px solid black;
 }
+
+.displayNone{
+  display: none;
+}
+
+.displayBlock{
+  display: inline-block;
+}
+
+.fa-star{
+  color: gold;
+}
+
+.thisFilm img,
+.thisSerie img{
+  max-width: 10px;
+}
