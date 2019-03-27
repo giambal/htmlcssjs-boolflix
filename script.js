@@ -1,10 +1,11 @@
 // ---- APPEND PER IL FILM ----
 
-function addMovieTitle(title,origTitle,origLanguage,voto) {
-
+function addMovieTitle(title,origTitle,origLanguage,voto,poster) {
+  var urls="https://api.themoviedb.org";
   var dataTemp={
     type:"MOVIE",
     title: title,
+    poster: urls+=poster,
     origTitle:  origTitle,
     origLanguage:  getFlag(origLanguage),
     voto:  Math.ceil(voto),
@@ -21,16 +22,17 @@ function addMovieTitle(title,origTitle,origLanguage,voto) {
 
 // ---- APPEND PER LA SERIE ----
 
-function addSerieTitle(title,origTitle,origLanguage,rating) {
-
+function addSerieTitle(title,origTitle,origLanguage,voto,poster) {
+  var urls="https://api.themoviedb.org";
   var dataTemp={
     type:"SERIE",
     title:title,
+    poster: urls+=poster,
     origTitle:  origTitle,
     origLanguage:  getFlag(origLanguage),
-    voto:  Math.ceil(rating),
+    voto:  Math.ceil(voto),
     class:"thisSerie",
-    stars: getSerieStars(rating)
+    stars: getSerieStars(voto)
   };
 
   var divTemp=$("#film-template").html();
@@ -57,9 +59,9 @@ function getMovieStars(voto) {
   return str;
 }
 
-function getSerieStars(rating) {
+function getSerieStars(voto) {
 
-  var votoArr=Math.ceil(rating/2);
+  var votoArr=Math.ceil(voto/2);
 
   var str=' ';
   for (var i = 0; i < 5; i++) {
@@ -75,16 +77,21 @@ function getSerieStars(rating) {
 // ---- GET FLAGS ----
 
 function getFlag(origLanguage) {
-
+  var flag;
   switch (origLanguage) {
-    case "en": '<img src="uk.png" alt="">';
+    case "en": flag= '<img src="uk.png" alt="">';
 
       break;
 
-    case "it": '<img src="it.png" alt="">';
+    case "it": flag='<img src="it.png" alt="">';
+
+      break;
+
+    case " ": flag='<img src="white.png" alt="">';
 
       break;
   }
+  return flag;
 }
 
 // ---- CLEAR DELLA LISTA ----
@@ -129,8 +136,9 @@ function ajaxGetMovie(val) {
         var origTitle=res.original_title;
         var origLanguage=res.original_language;
         var voto=res.vote_average;
+        var poster=res.poster_path;
 
-        addMovieTitle(title,origTitle,origLanguage,voto);
+        addMovieTitle(title,origTitle,origLanguage,voto,poster);
       }
     },
     error: function (error,state) {
@@ -162,9 +170,10 @@ function ajaxGetTvSeries(val) {
         var title=res.name;
         var origTitle=res.original_name;
         var origLanguage=res.original_language;
-        var rating=res.vote_average;
+        var voto=res.vote_average;
+        var poster=res.poster_path;
 
-        addSerieTitle(title,origTitle,origLanguage,rating);
+        addSerieTitle(title,origTitle,origLanguage,voto,poster);
       }
     },
     error: function (error,state) {
