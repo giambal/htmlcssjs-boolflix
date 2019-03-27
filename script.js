@@ -3,12 +3,12 @@
 function addMovieTitle(title,origTitle,origLanguage,voto) {
 
   var dataTemp={
-    movieTitle:"titolo: " + title,
-    movieOrigTitle: "titolo originale: " + origTitle,
-    movieOrigLanguage: "lingua originale: " + origLanguage,
-    movieVoto: "voto: " + Math.ceil(voto),
+    title:"titolo: " + title,
+    origTitle: "titolo originale: " + origTitle,
+    origLanguage: "lingua originale: " + origLanguage,
+    voto: "voto: " + Math.ceil(voto),
     class: "thisFilm",
-    stars: getStars(voto)
+    stars: getMovieStars(voto)
   };
 
   var divTemp=$("#film-template").html();
@@ -20,15 +20,15 @@ function addMovieTitle(title,origTitle,origLanguage,voto) {
 
 // ---- APPEND PER LA SERIE ----
 
-function addSerieTitle(title,origTitle,origLanguage,voto) {
+function addSerieTitle(title,origTitle,origLanguage,rating) {
 
   var dataTemp={
-    movieTitle:"titolo: " + title,
-    movieOrigTitle: "titolo originale: " + origTitle,
-    movieOrigLanguage: "lingua originale: " + origLanguage,
-    movieVoto: "voto: " + voto,
+    title:"titolo: " + title,
+    origTitle: "titolo originale: " + origTitle,
+    origLanguage: "lingua originale: " + origLanguage,
+    voto: "voto: " + rating,
     class:"thisSerie",
-    stars: getStars(voto)
+    stars: getSerieStars(rating)
   };
 
   var divTemp=$("#film-template").html();
@@ -40,11 +40,26 @@ function addSerieTitle(title,origTitle,origLanguage,voto) {
 
 // ---- GET STARS ----
 
-function getStars(voto) {
+function getMovieStars(voto) {
 
   var votoArr=Math.ceil(voto/2);
 
-  str=' ';
+  var str=' ';
+  for (var i = 0; i < votoArr; i++) {
+    if (i<=votoArr) {
+      str+='<i class="fas fa-star"></i>';
+    }else {
+      str+='ciao';
+    }
+  }
+  return str;
+}
+
+function getSerieStars(rating) {
+
+  var votoArr=Math.ceil(rating/2);
+
+  var str=' ';
   for (var i = 0; i < votoArr; i++) {
     if (i<=votoArr) {
       str+='<i class="fas fa-star"></i>';
@@ -52,6 +67,7 @@ function getStars(voto) {
       str+='<i class="far fa-star"></i>';
     }
   }
+  return str;
 }
 
 // ---- CLEAR DELLA LISTA ----
@@ -129,9 +145,9 @@ function ajaxGetTvSeries(val) {
         var title=res.name;
         var origTitle=res.original_name;
         var origLanguage=res.original_language;
-        var voto=res.vote_average;
+        var rating=res.vote_average;
 
-        addSerieTitle(title,origTitle,origLanguage,voto);
+        addSerieTitle(title,origTitle,origLanguage,rating);
       }
     },
     error: function (error,state) {
