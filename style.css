@@ -68,3 +68,7 @@ header{
 .thisSerie img{
   max-width: 20px;
 }
+
+.locandina{
+  max-width: 150px !important;
+}

@@ -1,11 +1,15 @@
 // ---- APPEND PER IL FILM ----
 
 function addMovieTitle(title,origTitle,origLanguage,voto,poster) {
-  var urls="https://api.themoviedb.org";
+  var urls="https://image.tmdb.org/t/p/w500";
+  var imgSrc=(urls+=poster);
+  if (poster=="null") {
+    imgSrc='<img src="null.jfif"/>';
+  }
   var dataTemp={
     type:"MOVIE",
     title: title,
-    poster: urls+=poster,
+    poster: imgSrc,
     origTitle:  origTitle,
     origLanguage:  getFlag(origLanguage),
     voto:  Math.ceil(voto),
@@ -23,11 +27,15 @@ function addMovieTitle(title,origTitle,origLanguage,voto,poster) {
 // ---- APPEND PER LA SERIE ----
 
 function addSerieTitle(title,origTitle,origLanguage,voto,poster) {
-  var urls="https://api.themoviedb.org";
+  var urls="https://image.tmdb.org/t/p/w500";
+  var imgSrc=(urls+=poster);
+  if (poster=="null") {
+    imgSrc='<img src="null.jfif"/>';
+  }
   var dataTemp={
     type:"SERIE",
     title:title,
-    poster: urls+=poster,
+    poster: imgSrc,
     origTitle:  origTitle,
     origLanguage:  getFlag(origLanguage),
     voto:  Math.ceil(voto),
