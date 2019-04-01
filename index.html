@@ -12,13 +12,17 @@
     <!-- TEMPLATE: MESSAGE MENU -->
     <script id="film-template" type="text/x-handlebars-template">
       <div class="{{class}}">
-        {{ type }} <br>
-        <img class="locandina" src="{{poster}}" > <br>
-        <b>Titolo: </b>{{ title }} <br>
-        <b>Titolo originale: </b>{{ origTitle }} <br>
-        <b>Lingua originale: </b>{{{ origLanguage }}} <br>
-        <b>Voto: </b>{{ voto }} <br>
-        {{{ stars }}}
+        <div id="locandina">
+          <img class="cover" src="{{poster}}" > <br>
+        </div>
+          <div id="informazioni">
+            {{ type }} <br>
+            <b>Titolo: </b>{{ title }} <br>
+            <b>Titolo originale: </b>{{ origTitle }} <br>
+            {{{ origLanguage }}} <br>
+            <b>Voto: </b>{{ voto }} <br>
+            {{{ stars }}}
+          </div>
       </div>
     </script>
 
@@ -45,7 +49,7 @@
 
 
         <div class="films">
-          <h1 class="displayNone">Results</h1>
+
         </div>
       </div>
     </div>

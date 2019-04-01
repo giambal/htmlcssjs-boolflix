@@ -1,11 +1,13 @@
 // ---- APPEND PER IL FILM ----
 
 function addMovieTitle(title,origTitle,origLanguage,voto,poster) {
-  var urls="https://image.tmdb.org/t/p/w500";
+  var urls="https://image.tmdb.org/t/p/w342";
   var imgSrc=(urls+=poster);
-  if (poster=="null") {
-    imgSrc='<img src="null.jfif"/>';
+  if (poster==null) {
+    imgSrc='null.jfif';
   }
+
+
   var dataTemp={
     type:"MOVIE",
     title: title,
@@ -22,20 +24,22 @@ function addMovieTitle(title,origTitle,origLanguage,voto,poster) {
   var finalHTML= compiled(dataTemp);
   var list=$("div.films");
   list.append(finalHTML);
+
 }
 
 // ---- APPEND PER LA SERIE ----
 
 function addSerieTitle(title,origTitle,origLanguage,voto,poster) {
-  var urls="https://image.tmdb.org/t/p/w500";
+  var urls="https://image.tmdb.org/t/p/w342";
   var imgSrc=(urls+=poster);
   if (poster=="null") {
     imgSrc='<img src="null.jfif"/>';
   }
+
   var dataTemp={
     type:"SERIE",
-    title:title,
     poster: imgSrc,
+    title:title,
     origTitle:  origTitle,
     origLanguage:  getFlag(origLanguage),
     voto:  Math.ceil(voto),
@@ -46,7 +50,9 @@ function addSerieTitle(title,origTitle,origLanguage,voto,poster) {
   var divTemp=$("#film-template").html();
   var compiled = Handlebars.compile(divTemp);
   var finalHTML= compiled(dataTemp);
+
   var list=$("div.films");
+
   list.append(finalHTML);
 }
 
